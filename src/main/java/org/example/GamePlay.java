@@ -17,5 +17,8 @@ public class GamePlay {
         ArrayList<Player> playerNames = narrator.getPlayers();
         gameM.determinePlayerOrder(playerNames);
         gameM.printPlayerOrder();
+        gameM.playerTurn();
+
+
     }
 }

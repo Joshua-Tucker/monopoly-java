@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Game {
+
     public void startGame() {
         // Access the game data
         Data.GameData gameData = Data.getGameData();

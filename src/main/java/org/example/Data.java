@@ -37,6 +37,99 @@ public class Data {
         int hotelCost;
         int houses;
         int hotel;
+
+        public Space(int index, String name, String type, int price, int[] rent, String color, int houseCost, int hotelCost, int houses, int hotel) {
+            this.index = index;
+            this.name = name;
+            this.type = type;
+            this.price = price;
+            this.rent = rent;
+            this.color = color;
+            this.houseCost = houseCost;
+            this.hotelCost = hotelCost;
+            this.houses = houses;
+            this.hotel = hotel;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        public void setIndex(int index) {
+            this.index = index;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        public void setPrice(int price) {
+            this.price = price;
+        }
+
+        public int[] getRent() {
+            return rent;
+        }
+
+        public void setRent(int[] rent) {
+            this.rent = rent;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
+        }
+
+        public int getHouseCost() {
+            return houseCost;
+        }
+
+        public void setHouseCost(int houseCost) {
+            this.houseCost = houseCost;
+        }
+
+        public int getHotelCost() {
+            return hotelCost;
+        }
+
+        public void setHotelCost(int hotelCost) {
+            this.hotelCost = hotelCost;
+        }
+
+        public int getHouses() {
+            return houses;
+        }
+
+        public void setHouses(int houses) {
+            this.houses = houses;
+        }
+
+        public int getHotel() {
+            return hotel;
+        }
+
+        public void setHotel(int hotel) {
+            this.hotel = hotel;
+        }
     }
 
     static class Cards {

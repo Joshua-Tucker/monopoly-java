@@ -9,6 +9,25 @@ public class Player {
     private ArrayList<String> properties;
     private int playerNumber;
 
+    public Player(String name, String piece, int money, ArrayList<String> properties, int playerNumber, int currentSquare) {
+        this.name = name;
+        this.piece = piece;
+        this.money = money;
+        this.properties = properties;
+        this.playerNumber = playerNumber;
+        this.currentSquare = currentSquare;
+    }
+
+    public int getCurrentSquare() {
+        return currentSquare;
+    }
+
+    public void setCurrentSquare(int currentSquare) {
+        this.currentSquare = currentSquare;
+    }
+
+    private int currentSquare;
+
     public int getPlayerNumber() {
         return playerNumber;
     }
@@ -17,13 +36,7 @@ public class Player {
         this.playerNumber = playerNumber;
     }
 
-    public Player(String name, String piece, int money, ArrayList<String> properties, int playerNumber) {
-        this.name = name;
-        this.piece = piece;
-        this.money = money;
-        this.properties = properties;
-        this.playerNumber = playerNumber;
-    }
+
 
     public String getName() {
         return name;
