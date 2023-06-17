@@ -23,12 +23,15 @@ public class Data {
 
         public GameData() {
             gamePieces = getAllGamePieces();
+
         }
     }
 
     static class Space {
+
         int index;
         String name;
+
         String type;
         int price;
         int[] rent;
@@ -37,8 +40,18 @@ public class Data {
         int hotelCost;
         int houses;
         int hotel;
+        boolean available;
+
+        public boolean isAvailable() {
+            return available;
+        }
+
+        public void setAvailable(boolean available) {
+            this.available = available;
+        }
 
         public Space(int index, String name, String type, int price, int[] rent, String color, int houseCost, int hotelCost, int houses, int hotel) {
+
             this.index = index;
             this.name = name;
             this.type = type;
@@ -49,6 +62,7 @@ public class Data {
             this.hotelCost = hotelCost;
             this.houses = houses;
             this.hotel = hotel;
+            this.available= available;
         }
 
         public int getIndex() {

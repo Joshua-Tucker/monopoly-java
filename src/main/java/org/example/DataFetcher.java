@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.List;
 
 public class DataFetcher {
 
@@ -24,6 +25,16 @@ public class DataFetcher {
         }
 
         Gson gson = new Gson();
-        return gson.fromJson(content.toString(), Data.GameData.class);
+        Data.GameData gameData = gson.fromJson(content.toString(), Data.GameData.class);
+
+        // Set availability to true for all spaces
+        if (gameData != null && gameData.spaces != null) {
+            for (Data.Space space : gameData.spaces) {
+                space.setAvailable(true);
+            }
+        }
+
+        return gameData;
     }
+
 }

@@ -8,6 +8,7 @@ public class Game {
     public void startGame() {
         // Access the game data
         Data.GameData gameData = Data.getGameData();
+
 //
 //        // Access the spaces
 //        Data.Space[] spaces = gameData.spaces;

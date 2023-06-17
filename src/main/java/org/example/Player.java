@@ -6,10 +6,10 @@ public class Player {
     private String name;
     private String piece;
     private int money;
-    private ArrayList<String> properties;
+    private ArrayList<Data.Space> properties;
     private int playerNumber;
 
-    public Player(String name, String piece, int money, ArrayList<String> properties, int playerNumber, int currentSquare) {
+    public Player(String name, String piece, int money, ArrayList<Data.Space> properties, int playerNumber, int currentSquare) {
         this.name = name;
         this.piece = piece;
         this.money = money;
@@ -62,11 +62,15 @@ public class Player {
         this.money = money;
     }
 
-    public ArrayList<String> getProperties() {
+    public ArrayList<Data.Space> getProperties() {
         return properties;
     }
 
-    public void setProperties(ArrayList<String> properties) {
+    public void setProperties(ArrayList<Data.Space> properties) {
         this.properties = properties;
+    }
+
+    public void addProperties (Data.Space space){
+        properties.add(space);
     }
 }

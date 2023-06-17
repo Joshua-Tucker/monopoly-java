@@ -7,11 +7,11 @@
     <list default="true" id="3ae4c1a1-94d7-4906-9db3-321e4cb8d106" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DataFetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GameMechanics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GameMechanics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GamePlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Narrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Narrator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/utils.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
