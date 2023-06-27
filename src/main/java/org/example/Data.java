@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.DataFetcher;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,7 +165,7 @@ public class Data {
 }
 
 class GamePiece {
-    private String name;
+    private final String name;
 
     public GamePiece(String name) {
         this.name = name;

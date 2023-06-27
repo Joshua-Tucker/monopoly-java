@@ -9,6 +9,25 @@ public class GameMechanics {
     private ArrayList<Player> players;
     private ArrayList<Data.Space> spaces;
     private Player currentPlayer;
+    private int bank;
+
+    public int getBank() {
+        return bank;
+    }
+
+    public void setBank(int bank) {
+        this.bank = bank;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    private boolean gameOver;
 
     public void determinePlayerOrder(ArrayList<Player> players) {
         this.players = new ArrayList<>(players);
@@ -62,56 +81,75 @@ public class GameMechanics {
                 consecutiveDoubles++;
                 moveToSquare(currentPlayer);
                 interactWithSquare(currentPlayer);
-                return diceRoll(currentPlayer); // Recursive call to roll again
+                return diceRoll(currentPlayer);
             }
         } else {
-            return true; // End the turn without recursive roll
+            return true;
         }
     }
 
     public void moveToSquare(Player currentPlayer) {
         int currentSquare = currentPlayer.getCurrentSquare();
         int newSquare = currentSquare + totalSpaces;
-        currentPlayer.setCurrentSquare(newSquare);
-        setTotalSpaces(0);
-        System.out.println("You are now on " + spaceFirst(getSpace(currentPlayer.getCurrentSquare())));
+
+        if (newSquare > 39) {
+            int pastGo = newSquare - 40;
+            currentPlayer.setCurrentSquare(pastGo);
+            setTotalSpaces(0);
+            System.out.println("You are now on " + spaceFirst(getSpace(currentPlayer.getCurrentSquare())));
+        } else {
+            currentPlayer.setCurrentSquare(newSquare);
+            setTotalSpaces(0);
+            System.out.println("You are now on " + spaceFirst(getSpace(currentPlayer.getCurrentSquare())));
+            System.out.println("-------");
+
+        }
     }
 
     public void interactWithSquare(Player currentPlayer) {
         Data.Space space = getSpace(currentPlayer.getCurrentSquare());
         Scanner scanner = new Scanner(System.in);
-        System.out.println(space.isAvailable());
 
-        if (space.isAvailable()) {
-            System.out.println("This property is available to buy for £" + space.getPrice() + ". Would you like to purchase the property?");
-            System.out.println("1 = Yes! 2 = No:(");
-            int ans = Integer.parseInt(scanner.nextLine());
+        if (space.type.contains("Property")) {
+            if (space.isAvailable()) {
+                System.out.println("This property is available to buy for £" + space.getPrice() + ". Would you like to purchase the property?");
+                System.out.println("1 = Yes! 2 = No:(");
+                int ans = Integer.parseInt(scanner.nextLine());
 
-            if (ans == 1) {
-                int oldMoney = currentPlayer.getMoney();
-                int newMoney = oldMoney - space.getPrice();
-                currentPlayer.setMoney(newMoney);
-                currentPlayer.addProperties(space);
-                space.setAvailable(false);
-                System.out.println("You now have £" + newMoney + " in your bank, and " + space.getName() + "in your portfolio!");
+                if (ans == 1) {
+                    int oldMoney = currentPlayer.getMoney();
+                    int newMoney = oldMoney - space.getPrice();
+                    currentPlayer.setMoney(newMoney);
+                    currentPlayer.addProperties(space);
+                    space.setAvailable(false);
+                    System.out.println("You now have £" + newMoney + " in your bank, and " + space.getName() + " in your portfolio!");
+                } else {
+                    System.out.println("You've chosen not to buy this property:(");
+                    System.out.println("-------");
+                }
             } else {
-                boolean currentPlayerOwnsProperty = currentPlayer.getProperties().contains(space);
-                if (!currentPlayerOwnsProperty) {
-                    for (Player player : players) {
-                        if (player.getProperties().contains(space)) {
-                            Player rentPlayer = player;
-                            payRent(currentPlayer, rentPlayer);
-                        }
+                Player rentPlayer = null;
+
+                for (Player player : players) {
+                    if (player.getProperties().contains(space)) {
+                        rentPlayer = player;
+                        break; // Exit the loop once rentPlayer is found
                     }
                 }
+
+                if (rentPlayer != currentPlayer) {
+                    payRent(currentPlayer, rentPlayer);
+                }
             }
+        } else if (space.type.contains("Special")) {
+            // Handle special space interaction here
         }
     }
 
     public void payRent(Player currentPlayer, Player rentPlayer) {
         Data.Space space = getSpace(currentPlayer.getCurrentSquare());
         int[] rent = space.getRent();
-        int rentOwed;
+        int rentOwed = 0;
         int hotel = space.getHotel();
         int house = space.getHouses();
         int oldMoneyCurrent = currentPlayer.getMoney();
@@ -125,7 +163,56 @@ public class GameMechanics {
 
         currentPlayer.setMoney(oldMoneyCurrent - rentOwed);
         rentPlayer.setMoney(oldMoneyRent + rentOwed);
+        System.out.println(currentPlayer.getName() + " has paid £" + rentOwed + " to " + rentPlayer.getName());
+        System.out.println(currentPlayer.getName() + " has £" + currentPlayer.getMoney());
+        System.out.println(rentPlayer.getName() + " has £" + rentPlayer.getMoney());
+        System.out.println("-------");
+
     }
+
+    public void bankrupt(){
+        //boolean is player bankrupt
+        //offers player a chance to sell houses/hotels=>property
+        //if still not enough players property goes to rentplayer
+    }
+
+    public void movePastGo(Player currentPlayer) {
+        //how do i determine that the players continue going around the board
+        //if past go collect 200
+        //if land on go collect 400
+    }
+
+    public void tax(Player currentPlayer) {
+//if index is ... pay rent to bank x amount else pay this amount
+    }
+
+    public void chance(Player currentPlayer) {
+//deck needs to be shuffled first on start up
+        //picks top card then moves to back of deck
+        //need action associated with each chance card
+    }
+
+    public void communityChest(Player currentPlayer) {
+//deck needs to be shuffled first on start up
+        //picks top card then moves to back of deck
+        //need action associated with each chance card
+    }
+
+    public void goToJail(Player currentPlayer) {
+        //boolean changes to true
+        //currentsquare changes to jail
+        //can only get out if roll a double or get out of jail free or after 3 go's
+        //does not collect rent
+
+    }
+
+    public void freeParking(Player currentPlayer) {
+        //all tax goes into this pot
+        //if land on money gets added to your account
+        //freeparking ersets to 0
+
+    }
+
 
     public void endTurn() {
         // Options to trade

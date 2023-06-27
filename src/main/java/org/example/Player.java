@@ -8,14 +8,16 @@ public class Player {
     private int money;
     private ArrayList<Data.Space> properties;
     private int playerNumber;
+    private final boolean inJail;
 
-    public Player(String name, String piece, int money, ArrayList<Data.Space> properties, int playerNumber, int currentSquare) {
+    public Player(String name, String piece, int money, ArrayList<Data.Space> properties, int playerNumber, int currentSquare, boolean inJail) {
         this.name = name;
         this.piece = piece;
         this.money = money;
         this.properties = properties;
         this.playerNumber = playerNumber;
         this.currentSquare = currentSquare;
+        this.inJail= inJail;
     }
 
     public int getCurrentSquare() {

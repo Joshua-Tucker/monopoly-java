@@ -57,7 +57,7 @@ public class Narrator {
         for (int i = 1; i <= numPlayers; i++) {
             System.out.print("Enter name for Player : ");
             String playerName = scanner.nextLine();
-            players.add(new Player(playerName, null, 2000, new ArrayList<>(), 0, 0));
+            players.add(new Player(playerName, null, 2000, new ArrayList<>(), 0, 0, false ));
         }
 
     }
