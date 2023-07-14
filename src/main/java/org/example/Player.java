@@ -1,6 +1,8 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Player {
     private String name;
@@ -8,9 +10,11 @@ public class Player {
     private int money;
     private ArrayList<Data.Space> properties;
     private int playerNumber;
-    private final boolean inJail;
+    private boolean inJail;
+    private boolean isBankrupt;
 
-    public Player(String name, String piece, int money, ArrayList<Data.Space> properties, int playerNumber, int currentSquare, boolean inJail) {
+
+    public Player(String name, String piece, int money, ArrayList<Data.Space> properties, int playerNumber, int currentSquare, boolean inJail, boolean isBankrupt) {
         this.name = name;
         this.piece = piece;
         this.money = money;
@@ -18,7 +22,60 @@ public class Player {
         this.playerNumber = playerNumber;
         this.currentSquare = currentSquare;
         this.inJail= inJail;
+        this.isBankrupt= isBankrupt;
     }
+
+    public void sortPropertiesByPriceDescending() {
+        Collections.sort(properties, new Comparator<Data.Space>() {
+            @Override
+            public int compare(Data.Space space1, Data.Space space2) {
+                // Compare space prices in descending order
+                return Integer.compare(space2.getPrice(), space1.getPrice());
+            }
+        });
+    }
+
+    public void sortPropertiesByHotel() {
+        Collections.sort(properties, new Comparator<Data.Space>() {
+            @Override
+            public int compare(Data.Space space1, Data.Space space2) {
+
+                // Compare space prices in descending order
+                return Integer.compare(space2.getHotel(), space1.getHotel());
+            }
+        });
+    }
+    public void sortPropertiesByHouse() {
+        Collections.sort(properties, new Comparator<Data.Space>() {
+            @Override
+            public int compare(Data.Space space1, Data.Space space2) {
+
+                // Compare space prices in descending order
+                return Integer.compare(space2.getHouses(), space1.getHouses());
+            }
+        });
+    }
+    public void countHousesPerProperty() {
+        for (Data.Space property : properties) {
+            int houseCount = 0;
+            if (property instanceof Data.Space) {
+                Data.Space propertySpace = (Data.Space) property;
+                houseCount = propertySpace.getHouses();
+            }
+            System.out.println(property.getName() + ", Houses: " + houseCount);
+        }
+    }
+    public void countHotelsPerProperty() {
+        for (Data.Space property : properties) {
+            int hotelCount = 0;
+            if (property instanceof Data.Space) {
+                Data.Space propertySpace = (Data.Space) property;
+                hotelCount = propertySpace.getHotel();
+            }
+            System.out.println(property.getName() + ", Houses: " + hotelCount);
+        }
+    }
+
 
     public int getCurrentSquare() {
         return currentSquare;
@@ -62,6 +119,21 @@ public class Player {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+    public boolean isInJail() {
+        return inJail;
+    }
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
+    public boolean isBankrupt() {
+        return isBankrupt;
+    }
+
+    public void setBankrupt(boolean bankrupt) {
+        isBankrupt = bankrupt;
     }
 
     public ArrayList<Data.Space> getProperties() {

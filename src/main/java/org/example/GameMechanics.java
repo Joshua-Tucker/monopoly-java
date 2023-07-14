@@ -170,9 +170,44 @@ public class GameMechanics {
 
     }
 
-    public void bankrupt(){
+    public void bankrupt(Player currentPlayer, Player rentPlayer){
+        Scanner scanner = new Scanner(System.in);
+        if(currentPlayer.getMoney()<= 0){
+            currentPlayer.setBankrupt(true);
+            if(currentPlayer.getProperties().size()>=1){
+                System.out.println("Oh no, you're bankrupt! You have assets that you can sell to " + rentPlayer + ". Would you like to sell or resign?");
+                System.out.println("1) Sell my assets   2) I give up!");
+                String answer = scanner.nextLine();
+                if(answer == String.valueOf(1)){
+                    System.out.println("You currently are in debt and have this amount to pay " + currentPlayer.getMoney());
+                    //how much do i need to pay
+                    System.out.println("You have these assets that you can sell");
+                  ArrayList<Data.Space> properties = currentPlayer.getProperties();
+                    for (Data.Space property: properties) {
+                       if (property.getHotel()==1){
+
+                       }
+
+                    }
+
+
+
+                    // properties that i have available to sell
+                    //list with those with hosues first
+                    //then the highest price that was paid
+                    //sell price is 10% less for house and initial cost
+                    // show price after each sell
+                    //once money is above 0 say that itas fine and end turn
+
+                }
+
+            }
+
+
+        }
         //boolean is player bankrupt
         //offers player a chance to sell houses/hotels=>property
+        //sell properties for 10% less than what bought them for
         //if still not enough players property goes to rentplayer
     }
 
